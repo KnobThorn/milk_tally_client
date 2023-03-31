@@ -39,56 +39,60 @@ const LoginGrader = () => {
 
   return (
     <>
-      <div className="text-2xl text-red text-center">{response} </div>
-      <div className="Auth-form-container">
-        <form className="Auth-form" onSubmit={handleSubmit}>
-          <div className="Auth-form-content">
-            <h3 className="Auth-form-title">Grader Sign In</h3>
-            <div className="form-group mt-3">
+      <div className="text-2xl text-red-500 text-center">{messages} </div>
+      <div className="bg-gray-100 my-10 flex items-center justify-center">
+        <div className="bg-white p-8 rounded shadow-md">
+          <h2 className="text-xl font-bold mb-4">Grader Login</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label htmlFor="name" className="block font-medium mb-2">
+                Name
+              </label>
               <input
                 type="text"
                 name="login_grader_name"
                 value={inputs.login_grader_name || ""}
                 onChange={handleChange}
-                className="p-2 text-xl text-center"
-                placeholder="Enter your member name"
+                className="w-full border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
-
-            <div className="form-group mt-3">
+            <div className="mb-4">
+              <label htmlFor="id" className="block font-medium mb-2">
+                ID
+              </label>
               <input
-                type="text"
+                id="id"
                 name="login_grader_id"
                 value={inputs.login_grader_id || ""}
                 onChange={handleChange}
-                className="p-2 text-xl text-center"
-                placeholder="Enter your member number"
+                className="w-full border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
-
-            <div className="form-group mt-3">
+            <div className="mb-4">
+              <label htmlFor="password" className="block font-medium mb-2">
+                Password
+              </label>
               <input
+                id="password"
                 type="password"
                 name="login_grader_password"
                 value={inputs.login_grader_password || ""}
                 onChange={handleChange}
-                className="p-2 text-xl text-center"
-                placeholder="Enter your password"
+                className="w-full border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
-            <div className="m-3 p-2">
-              <button className="w-1/2 p-2 bg-blue-600 text-xl  text-white font-bold">
-                Login
-              </button>
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Sign In
+            </button>
+            <div className=" p-2 m-4">
+              <a className="font-bold" href="/">
+                Am a Member
+              </a>
             </div>
-            <p className="forgot-password text-right mt-2">
-              Create <a href="/"> Are you a member?</a>
-            </p>
-            <p className="forgot-password text-right mt-2">
-              <a href="/">back home?</a>
-            </p>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </>
   );

@@ -4,11 +4,11 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:3001",
-    "url": "localhost:3001/verify",
+    "url": "http://localhost:3001/member/verify",
     "method": "POST",
     "sortNum": 0,
     "created": "2023-03-28T19:33:40.829Z",
-    "modified": "2023-03-30T13:36:36.588Z",
+    "modified": "2023-03-31T00:41:56.535Z",
     "headers": [],
     "params": [],
     "body": {

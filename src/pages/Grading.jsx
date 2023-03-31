@@ -1,15 +1,14 @@
 import axios from "axios";
-import { response } from "express";
 import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Grading() {
   const [tally, setTally] = useState();
   const [time, setTime] = useState();
-  const [grader, setGrader] = useState();
-  const [response, setResponse] = useState();
+  const [grader, setGrader] = useState({});
   const [member, setMember] = useState();
   const [collection_center_id, setCollection] = useState();
+  const navigate = useNavigate();
   const [messages, setMessages] = useState();
 
   useEffect(() => {
@@ -43,9 +42,9 @@ export default function Grading() {
       .then((res) => {
         console.log(res);
         if (res.data.graded) {
-          setResponse(res.data.msg);
+          setMessages(res.data.msg);
         } else {
-          setResponse(res.data.messages);
+          setMessages(res.data.msg);
         }
       })
       .catch((err) => {
@@ -54,8 +53,21 @@ export default function Grading() {
   };
   return (
     <div>
+      <div className="flex items-center justify-between px-4 py-2 bg-gray-100">
+        <div className="mr-4">
+          <span className="font-bold">{grader.grader_name}</span>
+          <span className="text-gray-500"> (ID: {grader.grader_id})</span>
+        </div>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => {
+            navigate("/");
+          }}>
+          Logout
+        </button>
+      </div>
       <h2 className="font-bold  p-2 m-3 text-2xl">Fill in the Form Below</h2>
-      <h3 className="text-2xl text-green font-bold p-2 m-3">{response}</h3>
+      <h3 className="text-2xl text-green font-bold p-2 m-3">{messages}</h3>
       <form onSubmit={handleSubmit} className="m-4 p-4">
         <div className="m-3 p-2 text-center">
           <input
