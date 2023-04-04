@@ -36,5 +36,43 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "479fa232-d0fb-44f4-906a-8eec1e7e8e9b",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:5000/register",
+    "url": "localhost:5000/register",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-04-04T07:46:31.022Z",
+    "modified": "2023-04-04T07:47:54.606Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{ \"register_user_name\":\"Evans Wanyoike\", \"register_user_id\":\"M002\", \"register_user_password\":\"wanyoike001\", \"register_user_role\":\"member\", \"register_collection_center_id\":\"R1\"}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "1ebfdef1-160f-4db3-9c6d-790b3c18173a",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3001/register",
+    "url": "localhost:3001/register",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-04-04T07:48:13.046Z",
+    "modified": "2023-04-04T08:14:50.831Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{ \"register_user_name\":\"Daniel Wainaina\", \"register_user_id\":\"G001\", \"register_user_password\":\"wainaina001\", \"register_user_role\":\"grader\", \"register_collection_center_id\":\"R1A\",\"register_route_id\":\"R1\"}",
+      "form": []
+    },
+    "tests": []
   }
 ]

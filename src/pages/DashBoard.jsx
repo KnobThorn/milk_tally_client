@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
 
 function Dashboard() {
   const [data, setData] = useState([]);
   const [member, setMember] = useState({});
   const navigate = useNavigate();
+  const printRef = useRef();
+
+  const handlePrint = useReactToPrint({
+    documentTitle: "report" + member.user_name + Date.now(),
+    content: () => printRef.current,
+  });
 
   function getDayOfWeek(date) {
     const dayOfWeek = new Date(date).toLocaleDateString("en-US", {
@@ -47,6 +55,7 @@ function Dashboard() {
       });
 
       setData(response.data);
+      console.log(response);
     } catch (error) {
       console.error(error);
     }
@@ -74,10 +83,6 @@ function Dashboard() {
   return (
     <div>
       <div className="flex items-center justify-between px-4 py-2 bg-gray-100">
-        <div className="mr-4">
-          <span className="font-bold">{member.member_name}</span>
-          <span className="text-gray-500"> (ID: {member.member_id})</span>
-        </div>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={() => {
@@ -85,35 +90,50 @@ function Dashboard() {
           }}>
           Logout
         </button>
+        <div className="mr-4">
+          <span className="font-bold uppercase">{member.user_name}</span>
+          <span className="text-gray-500">
+            (MEMBER NUMBER: {member.member_id})
+          </span>
+        </div>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={handlePrint}>
+          Report
+        </button>
       </div>
-      <h1 class="text-3xl font-bold mb-6 text-gray-800">This Week Tally</h1>
+      <h1 class="text-2xl p-3 font-bold mb-6 text-gray-800 uppercase">
+        This Week Tally
+      </h1>
 
       <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-              <table class="min-w-full divide-y divide-gray-200">
+            <div
+              ref={printRef}
+              class="overflow-hidden border-b border-black sm:rounded-lg">
+              <table class="min-w-full divide-y  divide-gray-200">
                 <thead class="bg-gray-50">
-                  <tr>
+                  <tr className="font-black">
                     <th
                       scope="col"
-                      class="px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Tally Id
+                      class="px-6 py-3  font-black text-xs  text-black uppercase tracking-wider">
+                      Tally Date
                     </th>
 
                     <th
                       scope="col"
-                      class="px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      class="px-6 py-3  text-xs font-black  text-black uppercase tracking-wider">
                       Tally Day
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Tally
+                      class="px-6 py-3  text-xs font-black  text-black uppercase tracking-wider">
+                      Tally(kg)
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      class="px-6 py-3  text-xs font-black  text-black uppercase tracking-wider">
                       Tally Time
                     </th>
                   </tr>
@@ -124,14 +144,16 @@ function Dashboard() {
                     let day = getDayOfWeek(tal.tally_date);
                     return (
                       <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                          {tal.tally_id}
+                        <td class="px-6 py-4 whitespace-nowrap text-sm border-2  border-black font-medium font-mono text-black">
+                          {tal.tally_date.split("T21:00:00.000Z")}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td class="px-6 py-4 whitespace-nowrap font-mono text-sm border-black border-2 text-black">
                           {day}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">{tal.tally}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td class="px-6 py-4 border-2 font-mono border-black whitespace-nowrap">
+                          {tal.tally}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap border-2 font-mono border-black text-sm text-black">
                           {tal.tally_time}
                         </td>
                       </tr>

@@ -7,19 +7,19 @@ export default function Grading() {
   const [time, setTime] = useState();
   const [grader, setGrader] = useState({});
   const [member, setMember] = useState();
-  const [collection_center_id, setCollection] = useState();
+  // const [collection_center_id, setCollection] = useState();
   const navigate = useNavigate();
   const [messages, setMessages] = useState();
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/grader/verify", {
+      .post("http://localhost:3001/member/verify", {
         token: localStorage.getItem("graderToken"),
       })
       .then((res) => {
         console.log(res.data);
         if (res.data.login) {
-          setGrader(res.data.grader);
+          setGrader(res.data.member);
         } else Navigate("/");
       })
       .catch((err) => {
@@ -34,8 +34,8 @@ export default function Grading() {
       tally_time: time,
       member_number: member,
       tally: tally,
-      collection_center_id: collection_center_id,
-      grader_id: grader.grader_id,
+      // collection_center_id: collection_center_id,
+      grader_id: grader.member_id,
     };
     axios
       .post("http://localhost:3001/grade", tallies)
@@ -55,8 +55,8 @@ export default function Grading() {
     <div>
       <div className="flex items-center justify-between px-4 py-2 bg-gray-100">
         <div className="mr-4">
-          <span className="font-bold">{grader.grader_name}</span>
-          <span className="text-gray-500"> (ID: {grader.grader_id})</span>
+          <span className="font-bold">{grader.user_name}</span>
+          <span className="text-gray-500"> (ID: {grader.member_id})</span>
         </div>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -90,7 +90,7 @@ export default function Grading() {
           />
         </div>
 
-        <div className="m-3 p-3">
+        {/* <div className="m-3 p-3">
           <input
             type="text"
             placeholder="Enter the Collection center_id"
@@ -99,7 +99,7 @@ export default function Grading() {
               setCollection(e.target.value);
             }}
           />
-        </div>
+        </div> */}
         <div className="m-3 p-2 text-center">
           <select
             name="tally_time"
@@ -108,6 +108,7 @@ export default function Grading() {
               setTime(e.target.value);
             }}
             className="p-2 w-1/4  text-xl text-center">
+            <option>select</option>
             <option>morning</option>
             <option>evening</option>
           </select>
