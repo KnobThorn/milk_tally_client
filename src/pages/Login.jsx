@@ -27,6 +27,11 @@ const Login = () => {
           console.log("you are a grader");
           navigate("/grade");
           setMessages(res.data.msg);
+        } else if (res.data.authenticated && res.data.role == "admin") {
+          localStorage.setItem("adminToken", res.data.token);
+          console.log("you are a an admin");
+          navigate("/admin");
+          setMessages(res.data.msg);
         } else {
           setMessages(res.data.msg);
           console.log("you are not authenticated");
@@ -58,9 +63,6 @@ const Login = () => {
           <h2 className="text-xl font-bold mb-4"> Login</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-8">
-              {/* <label htmlFor="name" className="block font-medium mb-2">
-                Name
-              </label> */}
               <input
                 type="text"
                 name="login_member_name"
@@ -71,9 +73,6 @@ const Login = () => {
               />
             </div>
             <div className="mb-8 ">
-              {/* <label htmlFor="id" className="block font-medium mb-2">
-                ID
-              </label> */}
               <input
                 id="id"
                 name="login_member_id"
@@ -84,9 +83,6 @@ const Login = () => {
               />
             </div>
             <div className="mb-8">
-              {/* <label htmlFor="password" className="block font-medium mb-2">
-                Password
-              </label> */}
               <input
                 id="password"
                 type="password"
@@ -102,17 +98,9 @@ const Login = () => {
               className=" w-full bg-blue-500 hover:bg-blue-700 text-white font-mono font-bold py-2 px-4 rounded">
               Sign In
             </button>
-            {/* <div className=" p-2 m-4">
-              <a className="font-bold" href="/login">
-                Am a Grader{" "}
-              </a>
-            </div> */}
           </form>
         </div>
-      </div>{" "}
-      {/* <div className="text-center  font-bold text-2xl mt-72 border-2 w-1/4 mx-auto bg-white text-red-600 px-2 py-4 ">
-        {messages}
-      </div> */}
+      </div>
     </div>
   );
 };

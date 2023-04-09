@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 // import LoginGrader from "./pages/LoginGrader";
 import Grading from "./pages/Grading";
 import DashBoard from "./pages/DashBoard";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           {/* <Route path="/" element={<LoginGrader />} /> */}
           <Route path="/grade" element={<Grading />} />
           <Route path="/dashboard" element={<DashBoard />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </BrowserRouter>
     </div>
