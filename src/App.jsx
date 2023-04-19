@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Grading from "./pages/Grading";
 import DashBoard from "./pages/DashBoard";
 import Admin from "./pages/Admin";
+import Details from "./pages/Details";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/grade" element={<Grading />} />
           <Route path="/dashboard" element={<DashBoard />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/details" element={<Details />} />
         </Routes>
       </BrowserRouter>
     </div>

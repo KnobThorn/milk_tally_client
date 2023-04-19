@@ -81,7 +81,7 @@ function Dashboard() {
   }, [weekOffset]);
 
   return (
-    <div>
+    <div className="bg-slate-400 h-screen">
       <div className="flex items-center justify-between px-4 py-2 bg-gray-100">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -103,7 +103,7 @@ function Dashboard() {
         </button>
       </div>
       <h1 class="text-2xl p-3 font-bold mb-6 text-gray-800 uppercase">
-        This Week Tally
+        This Week's Tally
       </h1>
 
       <div class="flex flex-col">
